@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3bdde334-cbe5-4e25-b44e-ff1d77e335be" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="ProjectId" id="1X6gDiHSRl2RF2xzaR78yQOM8IV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3bdde334-cbe5-4e25-b44e-ff1d77e335be" name="Default Changelist" comment="" />
+      <created>1580371841103</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580371841103</updated>
+      <workItem from="1580371843457" duration="414000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="478" y="192" key="svn.repositoryBrowser" timestamp="1580372002496">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="478" y="192" key="svn.repositoryBrowser/0.0.1280.800@0.0.1280.800" timestamp="1580372002496" />
+    <state x="75" y="166" key="vcs.ApplyPatchDifferentiatedDialog" timestamp="1580372023458">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="75" y="166" key="vcs.ApplyPatchDifferentiatedDialog/0.0.1280.800@0.0.1280.800" timestamp="1580372023458" />
+  </component>
+</project>
