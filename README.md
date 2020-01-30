@@ -1,20 +1,22 @@
 
 # Push Me To The Edge
 
+Simple game developed in JS 
+Try it & have fun !!
 
-## Installation des packages
+## Install packages
 
 ```shell
 npm install
 ```
 
-## Lancer le compileur
+## Compiler
 
 ```shell
 npm run watch
 ```
 
-## Ouvrir dans le navigateur
+## Launch browser
 
 ```shell
 npm run browser

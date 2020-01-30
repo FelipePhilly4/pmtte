@@ -12,7 +12,7 @@ export default class {
     this.frameRate = 24;
     this.buff = null;
     this.multiplicator = 1;
-    this.additionnator = 0;
+    //this.additionnator = 0;
   }
 
   // Génère le code html d'un Player
@@ -120,7 +120,7 @@ export default class {
       }
     }
 
-    this.score += roundScore * this.multiplicator + this.additionnator;
+    this.score += roundScore * this.multiplicator; //+ this.additionnator
     this.score = Math.round(this.score);
 
     this.render();
@@ -154,11 +154,11 @@ export default class {
         break;
       
       case 4:
-        this.additionnator = 50;
+        this.score += 50;
         break;
       
       case 5:
-        this.additionnator = -50;
+        this.score -= 50;
         break;
     }
 
