@@ -80,7 +80,7 @@ export default class Round {
           let currentBuff = Math.round(Math.random() * (buffs.length - 1));
           self.players[player].buff = buffs[currentBuff];
         }
-        
+
         // On lance un nouveau Round
         new Round(self.players, self.currentRound);
       });

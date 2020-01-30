@@ -82,10 +82,10 @@ export default class {
     clearInterval(this.counter);
 
     if (this.currentTime > this.time) {
-      toastr.warning('Too far!');
+      toastr.info('Too far!');
     }
     else {
-      toastr.success('You won but you could\'ve stand ' + (Math.round((this.time - this.currentTime) * 100) / 100) + ' more seconds !');
+      toastr.info('You won but you could\'ve stand ' + (Math.round((this.time - this.currentTime) * 100) / 100) + ' more seconds !');
     }
 
     this.points();
@@ -105,7 +105,7 @@ export default class {
       else {
         if (this.currentTime === this.time) {
           roundScore = 200;
-          toastr.success('P.E.R.F.E.C.T.!');
+          toastr.info('P.E.R.F.E.C.T.!');
           this.animate('bounce');
         }
         else {
@@ -134,25 +134,25 @@ export default class {
 
   applyBuff() {
     if (this.buff === null) return;
-    
+
     switch (this.buff.id) {
       case 0:
         this.time /= 2;
         break;
-      
+
       case 1:
         this.time *= 2;
         break;
-      
+
       case 2:
         this.animate('flash', '1s', 'linear', '0s', 'infinite');
         break;
-      
+
       case 3:
         this.multiplicator = 2;
         break;
     }
-    
+
     if (this.buff.bonus) {
       toastr.success('You got a buff!', this.buff.infos, { timeOut: 120000 });
     }
@@ -167,6 +167,8 @@ export default class {
   reset() {
     this.currentTime = 0;
     this.elLoad.style.height = 0;
+    this.multiplicator = 1;
+    this.animate('none');
     this.render();
   }
 }
