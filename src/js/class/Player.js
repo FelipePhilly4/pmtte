@@ -1,5 +1,4 @@
 import toastr from 'toastr';
-import { type } from 'os';
 
 export default class {
   constructor(name, elCard) {
@@ -11,6 +10,8 @@ export default class {
     this.timeMax = 1.75;
     this.currentTime = 0;
     this.frameRate = 24;
+    this.buff = null;
+    this.multiplicator = 1;
   }
 
   // Génère le code html d'un Player
@@ -44,6 +45,19 @@ export default class {
     this.elCurrentTime.innerText = this.currentTime + 's';
     // Utilisation du shorcut pour remplacer la propriété innerHTML de l'élément avec l'ID "score"
     this.elScore.innerText = this.score + 'pts';
+  }
+
+  // Animations CSS des cartes
+  animate(name, duration, timingFunction, delay, iterationCount, direction, fillMode) {
+    let fName = name || 'shake',
+      fDuration = duration || '1s',
+      fTimingFunction = timingFunction || 'linear',
+      fDelay = delay || '0s',
+      fIterationCount = iterationCount || '1',
+      fDirection = direction || 'forwards',
+      fFillMode = fillMode || 'normal';
+
+    this.elCard.style.animation = fName + ' ' + fDuration + ' ' + fTimingFunction + ' ' + fDelay + ' ' + fIterationCount + ' ' + fDirection + ' ' + fFillMode;
   }
 
   // Gère la pression sur le bouton de la souris
@@ -86,11 +100,13 @@ export default class {
     } else {
       if (this.currentTime > this.time) {
         roundScore = this.score / -2;
+        this.animate();
       }
       else {
-        if (this.currentTime == this.time) {
+        if (this.currentTime === this.time) {
           roundScore = 200;
           toastr.success('P.E.R.F.E.C.T.!');
+          this.animate('bounce');
         }
         else {
           let loadHeight = parseInt(this.elLoad.offsetHeight);
@@ -103,16 +119,47 @@ export default class {
       }
     }
 
-    this.score += roundScore;
+    this.score += roundScore * this.multiplicator;
     this.score = Math.round(this.score);
 
     this.render();
   }
 
+  // Définit le temps max pour chaque player par tour
   setTime() {
-    // TODO Math.random() qui renvoi un chiffre en 0.5 et 1.75 avec Math.round()
-    this.time = (Math.random() * (this.timeMax - this.timeMin) + this.timeMin).toFixed(2);
+    this.time = Math.round((Math.random() * (this.timeMax - this.timeMin) + this.timeMin) * 100) / 100;
     this.elTime.style.display = 'block';
+    this.render();
+  }
+
+  applyBuff() {
+    if (this.buff === null) return;
+    
+    switch (this.buff.id) {
+      case 0:
+        this.time /= 2;
+        break;
+      
+      case 1:
+        this.time *= 2;
+        break;
+      
+      case 2:
+        this.animate('flash', '1s', 'linear', '0s', 'infinite');
+        break;
+      
+      case 3:
+        this.multiplicator = 2;
+        break;
+    }
+    
+    if (this.buff.bonus) {
+      toastr.success('You got a buff!', this.buff.infos, { timeOut: 120000 });
+    }
+    else {
+      toastr.error('You got a debuff!', this.buff.infos, { timeOut: 120000 });
+    }
+
     this.render();
   }
 

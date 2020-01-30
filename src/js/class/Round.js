@@ -1,9 +1,12 @@
+import { buffs } from '../data/buffs';
+
 export default class Round {
   constructor(players, round) {
     this.players = players;
     this.currentRound = round || 1;
     this.elConsole = document.getElementById('console');
     this.currentPlayer = 0;
+    this.maxPlayerScore = 600;
 
     // Auto-initialisation de l'objet
     this.init();
@@ -27,6 +30,10 @@ export default class Round {
     this.elCurrentPlayer.innerText = 'New turn for ' + this.players[this.currentPlayer].name + '!';
     this.players[this.currentPlayer].elPush.style.display = 'block';
     this.players[this.currentPlayer].setTime();
+
+    // On appel la méthode applyBuff de chaque player si ce n'est le 1er Round
+    if (this.currentRound > 1) this.players[this.currentPlayer].applyBuff();
+    
     this.players[this.currentPlayer].elPush.addEventListener('mouseup', this.endTurn.bind(this));
   }
 
@@ -42,12 +49,44 @@ export default class Round {
   }
 
   endRound() {
-    let self = this;
-    ++this.currentRound;
-    this.elConsole.innerHTML = '<button class="next btn btn--bordered">Round ' + this.currentRound + '</button>';
+    let self = this,
+        winner = null;
 
-    this.elConsole.querySelector('.next').addEventListener('click', function () {
-      new Round(self.players, self.currentRound);
-    });
+    for (let player = 0; player < this.players.length; ++player) {
+      let score = this.players[player].score;
+
+      if (score >= this.maxPlayerScore) {
+        winner = this.players[player];
+        break;
+      }
+    }
+
+    if (winner !== null) {
+      this.elConsole.innerHTML = '<h2>' + winner.name + ' won the game!<br>See you next time assholes.</h2><button class="reload btn btn--bordered">New game!</button>';
+
+      this.elConsole.querySelector('.reload').addEventListener('click', function () {
+        document.location.reload();
+      });
+    }
+    else {
+      // Initialisation du prochain Round
+      ++this.currentRound;
+      this.elConsole.innerHTML = '<button class="next btn btn--bordered">Round ' + this.currentRound + '</button>';
+  
+      this.elConsole.querySelector('.next').addEventListener('click', function () {
+        // Ajoute un buff ou un debuff sur chaque joueur
+        for (let player = 0; player < self.players.length; ++player){
+          console.log('player buff : ' + player);
+          let currentBuff = Math.round(Math.random() * (buffs.length - 1));
+          self.players[player].buff = buffs[currentBuff];
+        }
+        
+        // On lance un nouveau Round
+        new Round(self.players, self.currentRound);
+      });
+    }
+
+
+
   }
 }

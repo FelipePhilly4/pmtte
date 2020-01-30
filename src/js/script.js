@@ -21,7 +21,7 @@ const game = {
   },
 
   addPlayer: function () {
-    let name = prompt('Nom du nouveau joueur ?', 'Noname'),
+    let name = prompt('Nom du nouveau joueur ?', 'Player ' + (self.players.length + 1)),
       player = new Player(name, this);
 
     self.players.push(player);
