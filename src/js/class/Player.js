@@ -12,6 +12,7 @@ export default class {
     this.frameRate = 24;
     this.buff = null;
     this.multiplicator = 1;
+    this.additionnator = 0;
   }
 
   // Génère le code html d'un Player
@@ -119,7 +120,7 @@ export default class {
       }
     }
 
-    this.score += roundScore * this.multiplicator;
+    this.score += roundScore * this.multiplicator + this.additionnator;
     this.score = Math.round(this.score);
 
     this.render();
@@ -151,13 +152,21 @@ export default class {
       case 3:
         this.multiplicator = 2;
         break;
+      
+      case 4:
+        this.additionnator = 50;
+        break;
+      
+      case 5:
+        this.additionnator = -50;
+        break;
     }
 
     if (this.buff.bonus) {
-      toastr.success('You got a buff!', this.buff.infos, { timeOut: 120000 });
+      toastr.success('You got a buff!', this.buff.infos, { timeOut: 110000 });
     }
     else {
-      toastr.error('You got a debuff!', this.buff.infos, { timeOut: 120000 });
+      toastr.error('You got a debuff!', this.buff.infos, { timeOut: 110000 });
     }
 
     this.render();
@@ -168,6 +177,7 @@ export default class {
     this.currentTime = 0;
     this.elLoad.style.height = 0;
     this.multiplicator = 1;
+    this.additionnator = 0;
     this.animate('none');
     this.render();
   }
