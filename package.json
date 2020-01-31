@@ -46,12 +46,12 @@
     "watch-js": "npm-watch build-js",
     "build-img": "imagemin src/img/*.{png,jpg,jpeg,gif} --out-dir=dist/img",
     "watch-img": "npm-watch build-img",
-    "build-copy": "copyfiles -u 1 src/fonts/* src/favicon/* dist",
+    "build-copy": "copyfiles -u 1 src/fonts/* src/favicon/*  dist",
     "watch-copy": "npm-watch build-copy",
     "watch": "run-p watch-*",
     "build": "run-s clear build-*",
     "clear": "del-cli dist -f",
-    "browser": "reload -d dist -b"
+    "browser": "reload -p 1234 -d dist -b"
   },
   "author": "Matthieu Schneider",
   "license": "MIT",

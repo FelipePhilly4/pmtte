@@ -65,7 +65,21 @@ main {
 	border: 5px solid $melanzane;
 	justify-content: center;
   margin: 0 1rem;
-  text-align: center;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+	z-index: 0;
+
+	.scoreLoad {
+		background: $bright-turquoise;
+		min-height: 0;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		transition: min-height 0.75s ease-in-out;
+		z-index: -1;
+	}
 
   &--add {
     align-items: center;

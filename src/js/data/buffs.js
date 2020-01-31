@@ -28,5 +28,10 @@ export let buffs = [
     id: 5,
     bonus: false,
     infos: 'Too bad dickhead: -50 pts !'
+  },
+  {
+    id: 6,
+    bonus: false,
+    infos: 'Pass your turn dickhead!'
   }
 ];
